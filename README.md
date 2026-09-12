@@ -12,7 +12,7 @@ status from a Raspberry Pi 5 running as a home server.
 This API runs as a Docker container on the Pi, alongside Nextcloud, Jellyfin,
 and Portainer. It's exposed to the public internet via **Tailscale Funnel**
 (no router port-forwarding needed), so a separately-deployed frontend
-(see [pi-dashboard](https://github.com/<your-username>/pi-dashboard)) can
+(see [pi-dashboard](https://github.com/itsHarshalPatel/pi-dashboard)) can
 fetch live data from it.
 
 ## Stack
