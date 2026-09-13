@@ -11,11 +11,12 @@ app.use(cors());
 
 app.get('/api/stats', async (req, res) => {
   try {
-    const [cpu, mem, disk, time] = await Promise.all([
+    const [cpu, mem, disk, time, temp] = await Promise.all([
       si.currentLoad(),
       si.mem(),
       si.fsSize(),
-      si.time()
+      si.time(),
+      si.cpuTemperature()
     ]);
 
     const containers = await docker.listContainers({ all: true });
@@ -29,6 +30,9 @@ app.get('/api/stats', async (req, res) => {
     res.json({
       cpu: {
         loadPercent: cpu.currentLoad.toFixed(1)
+      },
+      temperature: {
+        celsius: temp.main.toFixed(1)
       },
       memory: {
         totalGB: (mem.total / 1e9).toFixed(2),
